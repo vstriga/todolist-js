@@ -1,5 +1,6 @@
 const listDo = document.getElementById("list-body");
 const addLine = document.getElementById("add-line");
+const headBtn = document.querySelector(".btn-add");
 let listArr = data();
 
 if (!localStorage.hasOwnProperty("id")) {
@@ -30,11 +31,17 @@ function addTask() {
     listArr.push(arrElem);
     addLine.value = "";
     localStorage.maList = JSON.stringify({ maillist: listArr });
+    headBtn.classList.add("hidden");
   }
 }
 
 function delItemArr(id) {
   return listArr.filter((item) => item.index != id);
+}
+function showAdd() {
+  if (addLine.value) {
+    headBtn.classList.remove("hidden");
+  }
 }
 
 function delTask(event) {
@@ -106,6 +113,7 @@ function showAll() {
 function inputForm(arrElem) {
   let div = document.createElement("div");
   div.classList.add("list-item");
+
   let itemCheck = document.createElement("div");
   let itemInput = document.createElement("div");
   let itemDelete = document.createElement("div");
@@ -114,7 +122,7 @@ function inputForm(arrElem) {
     itemInput.classList.add("task-done");
   }
   itemInput.classList.add("item-input");
-  itemDelete.classList.add("item-delete");
+  itemDelete.classList.add("item-delete", "hidden");
   div.append(itemCheck);
   div.append(itemInput);
   div.append(itemDelete);
