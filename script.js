@@ -55,7 +55,6 @@ function addText() {
 }
 
 function checkAction(event) {
-  console.log(event);
   if (event.target.checked) {
     event.target.parentNode.nextSibling.classList.add("task-done");
     listArr = listArr.map(function (item) {
@@ -99,7 +98,6 @@ function showChecked() {
   }
 }
 function showAll() {
-  console.log(JSON.parse(localStorage.maList));
   for (let node of document.querySelectorAll(".list-item")) {
     node.classList.remove("hidden");
   }
@@ -129,7 +127,7 @@ function inputForm(arrElem) {
   itemInput.innerText = arrElem.text;
   itemDelete.append(document.createElement("button"));
   itemDelete.firstChild.setAttribute("onclick", "delTask(event)");
-  itemDelete.firstChild.innerHTML = "Delete";
+  itemDelete.firstChild.innerText = "Delete";
   itemDelete.firstChild.setAttribute("value", arrElem.index);
   return div;
 }
