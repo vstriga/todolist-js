@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>ToDoList JS</title>
+  </head>
+  <body>
+      <div class="main">
+    <div class="list-head">
+      <div class="add-line"><input type="text" id="add-line" placeholder="What need to be done?" /></div>
+      <div class="btn-line">
+        <button onclick="addTask()">Add</button>
+        <button onclick="delAll()">Delete all</button>
+        <button onclick="showAll()" id='all'>All</button>
+        <button onclick="showChecked()" id='checked'>Checked</button>
+        <button onclick="showUnchecked()" id='unchecked'>Unchecked</button>
+      </div>
+    </div>
+    <div class="list-body" id="list-body">
+      <!-- <div class="list-item">
+        <div class="item-check">
+          <input type="checkbox" onchange="checkAction(this)" id="" />
+        </div>
+        <div class="item-input">Task 1</div>
+        <div class="item-delete">
+          <button onclick="delTask(this)">delete</button>
+        </div> -->
+      </div>
+    </div>
+</div>
+  </body>
+  <script src="script.js"></script>
+</html>
