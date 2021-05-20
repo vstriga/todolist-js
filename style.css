@@ -1,79 +1,188 @@
+@import url("https://css.gg/push-chevron-down.css");
+
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 80px;
+  margin: 0;
+  color: #ead8d8;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .main {
-  margin: 20px;
-  border: 1px solid grey;
-  width: 500px;
+  margin: 20px auto;
+  border: none;
+  width: 600px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee,
+    0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee,
+    0 20px 1px -9px rgba(0, 0, 0, 0.15);
+}
+
+.cross {
+  background-image: url("https://image.flaticon.com/icons/png/512/17/17047.png");
+  background-size: cover;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.to-head {
+  width: 600px;
+  margin: 20px auto;
+  text-align: center;
 }
 
 .list-body {
   width: 100%;
   display: block;
 }
+
 .list-head {
   width: 100%;
   display: inline-block;
-  padding: 10px 0;
 }
-.list-item {
-  width: 99.5%;
-  border-top: 1px solid grey;
-  display: inline-block;
 
+.list-item {
+  width: 100%;
+  box-shadow: 0px -1px 0px 0px rgba(34, 60, 80, 0.1);
+  display: inline-block;
   height: auto;
 }
+
 .list-item:hover .item-delete {
   display: block !important;
 }
-.item-check {
-  display: list-item;
+
+.item-delete {
   width: 10%;
-  list-style: none;
-  float: left;
-  padding: 10px;
-}
-.item-check input[type="checkbox"] {
-  height: 2em;
-  width: 2em;
-  border: 1px solid grey;
-  border-radius: 0;
-}
-.item-input {
   display: list-item;
   list-style: none;
-  float: left;
+  float: right;
+  margin: 10px;
   padding: 10px;
-  padding-left: 0;
-  font-size: 24px;
-  width: 70%;
 }
+
+.item-delete button {
+  height: 20px;
+  width: 20px;
+  margin: auto;
+}
+
+.item-check {
+  display: flex;
+  list-style: none;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 100%;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+  margin: 10px 10px;
+}
+
+input[type="checkbox"]::before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 5px;
+  left: 13px;
+  width: 11px;
+  height: 19px;
+  border-style: solid;
+  border-color: green;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+input[type="checkbox"]:checked {
+  color: white;
+  border-color: grey;
+  background: white;
+}
+
+input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+input[type="checkbox"]:checked ~ label::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+label {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 0 0.25em 0;
+  user-select: none;
+}
+
+label::before {
+  position: absolute;
+  content: attr(data-content);
+  color: lightgray;
+  clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: black;
+  transition: clip-path 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.active-btn {
+  border: 1px solid rgb(177, 176, 176) !important;
+  border-radius: 3px;
+}
+
 .list-item button {
   background-color: white;
   border: none;
-  margin: 5px;
   float: right;
   display: list-item;
   list-style: none;
-  padding: 10px;
 }
+
 .task-done {
   text-decoration: line-through;
+  color: rgb(194, 194, 194);
+  opacity: 0.6;
 }
+
 .hidden {
   display: none !important;
 }
+
 .logo {
   width: 10%;
   display: list-item;
   list-style: none;
   float: left;
-  padding: 10px;
+  padding: 10px 0;
+  margin: 10px 0;
 }
+
 .add-line {
   display: list-item;
   width: 70%;
   list-style: none;
   float: left;
   font-size: 24px;
+  padding-top: 20px;
+  height: 35px;
 }
+
 .btn-add {
   display: list-item;
   width: 10%;
@@ -81,11 +190,15 @@
   float: left;
   padding: 10px;
 }
+
 .btn-add button {
   border: none;
   background-color: white;
   height: 100%;
+  box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.24);
+  padding: 10px;
 }
+
 #add-line {
   border: none;
   margin-bottom: 0;
@@ -93,26 +206,66 @@
   width: 100%;
   height: 30px;
   outline: none;
+  background-color: white;
 }
-.btn-line {
+
+#add-line::-webkit-input-placeholder {
+  color: grey;
+  opacity: 0.3;
+}
+
+.list-footer {
+  min-height: 30px;
+  border-top: 1px solid #e7e7e7;
+  display: inline-block;
   width: 100%;
-  height: 30px;
-  margin: 10px 0;
 }
-.btn-line button {
+
+.btn-line {
+  width: 33.3%;
+  min-height: 30px;
+  list-style: none;
+  display: list-item;
   float: left;
-  border: 1px solid grey;
-  margin: 10px 0;
+}
+
+.left-label {
+  width: 18.3%;
+  float: left;
+  display: list-item;
+  list-style: none;
+  border: none;
+  margin: 10px 15px;
+  height: 100%;
+  background-color: white;
+}
+
+.filter-btn {
+  width: 43.3%;
+  float: left;
+  display: list-item;
+  list-style: none;
+}
+
+.btn-line button {
+  float: right;
+  border: none;
+  margin: 10px 5px;
   height: 100%;
   width: auto;
   background-color: white;
 }
-#all {
-  float: right;
+
+.filter-btn button {
+  float: left;
+  border: none;
+  margin: 10px 5px;
+  height: 100%;
+  width: auto;
+  background-color: white;
 }
-#unchecked {
-  float: right;
-}
-#checked {
-  float: right;
+
+.gg-push-chevron-down {
+  color: gainsboro;
+  margin: auto;
 }

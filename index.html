@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>ToDoList JS</title>
-  </head>
-  <body>
-      <div class="main">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>ToDoList JS</title>
+</head>
+
+<body>
+  <header class="to-head">
+    <h1>TODOS</h1>
+  </header>
+  <div class="main">
     <div class="list-head">
-    <div class="logo"> 111</div>
-      <div class="add-line"><input type="text" id="add-line" placeholder="What need to be done?" oninput="showAdd()"/></div>
-      <div class="btn-add hidden"><button onclick="addTask()">Add</button></div>
+      <div class="logo"> <i class="gg-push-chevron-down"></i></div>
+      <div class="add-line"><input type="text" id="add-line" placeholder="What need to be done?"
+          onkeydown="addTask(event)" /></div>
     </div>
     <div class="list-body" id="list-body">
-      <!-- <div class="list-item">
-        <div class="item-check">
-          <input type="checkbox" onchange="checkAction(this)" id="" />
-        </div>
-        <div class="item-input">Task 1</div>
-        <div class="item-delete">
-          <button onclick="delTask(this)">delete</button>
-        </div> -->
+    </div>
+    <div class="list-footer">
+      <div class="left-label" id='left-label'>111</div>
+      <div class="filter-btn">
+        <button onclick="showAll()" id='all' class="active-btn ">All</button>
+        <button onclick="showUnchecked()" id='unchecked'>Active</button>
+        <button onclick="showChecked()" id='checked'>Completed</button>
       </div>
-      <div class="list-footer">
-          <div class="btn-line">
-        
-        <button onclick="delAll()">Delete all</button>
-        <button onclick="showAll()" id='all'>All</button>
-        <button onclick="showChecked()" id='checked'>Checked</button>
-        <button onclick="showUnchecked()" id='unchecked'>Unchecked</button>
-      </div>
+      <div class="btn-line">
+        <button onclick="delAll()" class="del-all">Clear completed</button>
       </div>
     </div>
-</div>
-  </body>
-  <script src="script.js"></script>
+  </div>
+  </div>
+</body>
+<script src="script.js"></script>
+
 </html>
