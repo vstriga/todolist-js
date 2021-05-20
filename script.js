@@ -1,9 +1,8 @@
 const listDo = document.getElementById("list-body");
 const addLine = document.getElementById("add-line");
-const headBtn = document.querySelector(".btn-add");
 const allBtn = document.getElementById("all");
-const ckdBtn = document.getElementById("checked");
-const unckdBtn = document.getElementById("unchecked");
+const checkedBtn = document.getElementById("checked");
+const uncheckedBtn = document.getElementById("unchecked");
 const leftLabel = document.getElementById("left-label");
 
 let listArr = data();
@@ -29,9 +28,12 @@ function data() {
 }
 
 function addTask(event) {
-  if (event.key == "Enter" && addText()) {
-    let arrElem = { text: addText(), completed: false, index: localStorage.id };
-
+  if (event.key == "Enter" && addLine.value.trim()) {
+    let arrElem = {
+      text: addLine.value.trim(),
+      completed: false,
+      index: localStorage.id,
+    };
     listDo.append(inputForm(arrElem));
     localStorage.id = +localStorage.id + 1;
     listArr.push(arrElem);
@@ -43,24 +45,18 @@ function addTask(event) {
 }
 
 function delItemArr(id) {
-  counter = count();
-  leftLabel.innerText = counter + " items left";
   return listArr.filter((item) => item.index != id);
-}
-
-function showAdd() {
-  if (addLine.value) {
-    headBtn.classList.remove("hidden");
-  }
 }
 
 function delTask(event) {
   event.target.parentNode.parentNode.remove();
   listArr = delItemArr(event.target.value);
   localStorage.maList = JSON.stringify({ maillist: listArr });
+  counter = count();
+  leftLabel.innerText = counter + " items left";
 }
 
-function delAll() {
+function delChecked() {
   listArr = listArr.filter((item) => item.completed == false);
   while (listDo.lastChild) {
     listDo.lastChild.remove();
@@ -69,10 +65,6 @@ function delAll() {
     listDo.append(inputForm(item));
   }
   localStorage.maList = JSON.stringify({ maillist: listArr });
-}
-
-function addText() {
-  return addLine.value.trim();
 }
 
 function count() {
@@ -84,8 +76,6 @@ function count() {
 }
 
 function checkAction(event) {
-  console.log(counter);
-
   if (event.target.checked) {
     event.target.parentNode.lastChild.classList.add("task-done");
     listArr = listArr.map(function (item) {
@@ -112,8 +102,8 @@ function checkAction(event) {
 }
 
 function showUnchecked() {
-  unckdBtn.classList.add("active-btn");
-  ckdBtn.classList.remove("active-btn");
+  uncheckedBtn.classList.add("active-btn");
+  checkedBtn.classList.remove("active-btn");
   allBtn.classList.remove("active-btn");
   for (let node of document.querySelectorAll(".list-item")) {
     if (node.firstChild.firstChild.checked) {
@@ -125,9 +115,9 @@ function showUnchecked() {
 }
 
 function showChecked() {
-  ckdBtn.classList.add("active-btn");
+  checkedBtn.classList.add("active-btn");
   allBtn.classList.remove("active-btn");
-  unckdBtn.classList.remove("active-btn");
+  uncheckedBtn.classList.remove("active-btn");
   for (let node of document.querySelectorAll(".list-item")) {
     if (!node.firstChild.firstChild.checked) {
       node.classList.add("hidden");
@@ -139,8 +129,8 @@ function showChecked() {
 
 function showAll() {
   allBtn.classList.add("active-btn");
-  unckdBtn.classList.remove("active-btn");
-  ckdBtn.classList.remove("active-btn");
+  uncheckedBtn.classList.remove("active-btn");
+  checkedBtn.classList.remove("active-btn");
   for (let node of document.querySelectorAll(".list-item")) {
     node.classList.remove("hidden");
   }
